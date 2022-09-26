@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import Cartoes, Cliente, Conta, Emprestimos, Endereco, Extrato, Faturas, PgtoEmprestimo, TiposCliente, Transferencia, Usuario
-from .serializer import CartaoSerializer, ClienteSerializer, ContaSerializer, EmprestimoSerializer, EnderecoSerializer, ExtratoSerializer, FaturaSerializer, PgtoEmprSerializer, TipoClientSerializer, TransfSerializer, UsuarioSerializer
+from .models import Cartoes, Cliente, Conta, Emprestimos, Endereco, Extrato, Faturas, PgtoEmprestimo, Transferencia, Usuario
+from .serializer import CartaoSerializer, ClienteSerializer, ContaSerializer, EmprestimoSerializer, EnderecoSerializer, ExtratoSerializer, FaturaSerializer, PgtoEmprSerializer, TransfSerializer, UsuarioSerializer
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from django.shortcuts import render,get_object_or_404
 from rest_framework.response import Response
@@ -8,9 +8,7 @@ from rest_framework import viewsets
 from django_filters import rest_framework as filters
 from django_filters.rest_framework import FilterSet
 
-class TipoClientViewSet(viewsets.ModelViewSet):
-    queryset = TiposCliente.objects.all()
-    serializer_class = TipoClientSerializer
+
     
 class UsuarioViewSet(viewsets.ModelViewSet):
     queryset = Usuario.objects.all()

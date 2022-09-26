@@ -1,19 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator
 
-class TiposCliente(models.Model):
-   
-    PLANO_PREMIUM = 'P'
-    PLANO_FREE = 'F'
-    
-    TIPOS_PLANO = [
-        (PLANO_FREE, 'Free'),
-        (PLANO_PREMIUM,'Premium'),
-        
-    ]
-    
-    tipoClient= models.CharField(max_length=1, choices=TIPOS_PLANO,default=PLANO_FREE)
-    
 class Usuario(models.Model):
     cpf =  models.CharField(max_length=11)
     senha = models.IntegerField(validators=[MinValueValidator(8,"A senha precisa ter no minimo 8 caracteres")])
@@ -28,6 +15,15 @@ class Cliente(models.Model):
         
     ]
     
+    PLANO_PREMIUM = 'P'
+    PLANO_FREE = 'F'
+    
+    TIPOS_PLANO = [
+        (PLANO_FREE, 'Free'),
+        (PLANO_PREMIUM,'Premium')
+        
+    ]
+    
     genero= models.CharField(max_length=1, choices=GENERO,default=FEMININO)
     nome = models.CharField(max_length=255)
     idade = models.IntegerField(max_length=3)
@@ -35,7 +31,8 @@ class Cliente(models.Model):
     data_nasc = models.DateField()
     usuario = models.ForeignKey(Usuario,on_delete=models.PROTECT)
     foto = models.ImageField()
-    tipoClient = models.ForeignKey(TiposCliente,on_delete=models.CASCADE)
+    tipo= models.CharField(max_length=1, choices=TIPOS_PLANO,default=PLANO_FREE)
+
     
     
 class Endereco(models.Model):

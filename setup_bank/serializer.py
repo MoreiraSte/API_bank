@@ -4,15 +4,17 @@ from setup_bank.models import Usuario,Cliente,Endereco,Conta,Transferencia,Carto
 
 
         
-class UsuarioSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Usuario
-        fields= ['id','cpf','senha']
+
         
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model=Cliente
-        fields= ['id','nome', 'idade','genero', 'data_nasc','celular','usuario','foto', 'tipo']
+        fields= ['id','nome', 'idade','genero', 'celular','data_nasc','email','cpf','senha','foto', 'tipo']
+        
+class UsuarioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Usuario
+        fields= ['id','ususario']
         
 class ContaSerializer(serializers.ModelSerializer):
     class Meta:

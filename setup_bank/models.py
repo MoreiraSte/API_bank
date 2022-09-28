@@ -1,11 +1,11 @@
+import email
 from django.db import models
 from django.core.validators import MinValueValidator
 
-class Usuario(models.Model):
-    cpf =  models.CharField(max_length=11)
-    senha = models.IntegerField(validators=[MinValueValidator(8,"A senha precisa ter no minimo 8 caracteres")])
+
    
 class Cliente(models.Model):
+    
     FEMININO = 'F'
     MASCULINO = 'M'
     
@@ -29,11 +29,14 @@ class Cliente(models.Model):
     idade = models.IntegerField(max_length=3)
     celular = models.CharField(max_length=15)
     data_nasc = models.DateField()
-    usuario = models.ForeignKey(Usuario,on_delete=models.PROTECT)
+    email = models.CharField(max_length=255)
+    cpf =  models.CharField(max_length=11)
+    senha = models.IntegerField(validators=[MinValueValidator(8,"A senha precisa ter no minimo 8 caracteres")])
     foto = models.ImageField()
     tipo= models.CharField(max_length=1, choices=TIPOS_PLANO,default=PLANO_FREE)
 
-    
+class Usuario(models.Model):
+    usuario = models.ForeignKey(Cliente,on_delete=models.PROTECT)
     
 class Endereco(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)

@@ -1,10 +1,5 @@
 from rest_framework import serializers
-from setup_bank.models import Usuario,Cliente,Endereco,Conta,Transferencia,Cartoes,Faturas,Emprestimos,PgtoEmprestimo,Extrato
-
-
-
-        
-
+from setup_bank.models import Usuario,Cliente,Endereco,Conta,Transferencia,Cartoes,Faturas,Emprestimos,PgtoEmprestimo,Extrat
         
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:

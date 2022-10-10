@@ -1,6 +1,8 @@
 import email
 from django.db import models
 from django.core.validators import MinValueValidator
+from pictures.models import PictureField
+
 
 
    
@@ -32,7 +34,7 @@ class Cliente(models.Model):
     email = models.CharField(max_length=255)
     cpf =  models.CharField(max_length=11)
     senha = models.IntegerField(validators=[MinValueValidator(8,"A senha precisa ter no minimo 8 caracteres")])
-    foto = models.ImageField()
+    foto = PictureField(upload_to='home/imagens')
     tipo= models.CharField(max_length=1, choices=TIPOS_PLANO,default=PLANO_FREE)
 
 class Usuario(models.Model):

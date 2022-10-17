@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/54104530-f054-4010-a69c-5d4c99164dc1/AppServices/subscriptions/54104530-f054-4010-a69c-5d4c99164dc1/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/djangoapibank",
+    "appService.deploySubpath": "."
+}

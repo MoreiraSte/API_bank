@@ -40,12 +40,59 @@ class Usuario(models.Model):
     
 class Endereco(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    rua = models.CharField(max_length=255)
-    cidade=models.CharField(max_length=50)
-    bairro = models.CharField(max_length=50)
-    uf=models.CharField(max_length=2)
-    numero=models.IntegerField(unique=True, max_length=6)
-    cep =  models.IntegerField(max_length=9)
+    SAO_PAULO = 'SP'
+    ACRE = 'AC'
+    ALAGOAS = 'AL'
+    AMAPA ='AP'
+    AMAZONAS='AM'
+    BAHIA = 'BA'
+    CEARA = 'CE'
+    ESPIRITO_SANTO = 'ES'
+    GOIAS = 'GO'
+    MARANHAO = 'MA'
+    MATO_GROSSO = 'MT'
+    MATO_GROSSO_SUL = 'MS'
+    MINAS_GERAIS='MG'
+    PARA='PA'
+    PARAIBA='PB'
+    PARANA='PR'
+    PERNAMBUCO='PE'
+    PIAUI='PI'
+    RIO_JANEIRO='RJ'
+    RIO_GRANDE_NORTE='RN'
+    RIO_GRANDE_SUL='RS'
+    RONDONIA='RO'
+    RORAIMA='RR'
+    SANTA_CATARINA='SC'
+    SERGIPE='SE'
+    TOCANTINS='TO'
+    DISTRITO = 'DF'
+    
+    ESTADOS = [
+        (SAO_PAULO, 'Pix'),
+        (ACRE, 'Boleto'),
+        (ALAGOAS, 'Pix'),
+        (AMAPA, 'Boleto'),
+        (AMAZONAS, 'Pix'),
+        (BAHIA, 'Boleto'),
+        (CEARA, 'Pix'),
+        (ESPIRITO_SANTO, 'Boleto'),
+        (GOIAS, 'Pix'),
+        (MARANHAO, 'Boleto'),
+        (MATO_GROSSO, 'Pix'),
+        (MATO_GROSSO_SUL, 'Boleto'),
+        (MINAS_GERAIS, 'Pix'),
+        (PARA, 'Boleto'),
+        (PARAIBA, 'Pix'),
+        (PARANA, 'Boleto'),
+        (PERNAMBUCO, 'Pix'),
+        (PIAUI, 'Boleto'),
+        (RIO_JANEIRO, 'Pix'),
+        (RIO_GRANDE_NORTE, 'Boleto'),
+        (MINAS_GERAIS, 'Pix'),
+        (PARA, 'Boleto'),
+    ]
+    endereco =  models.CharField(max_length=1, choices=ESTADOS, default=SAO_PAULO)
     
 class Conta(models.Model):
     numConta = models.CharField(max_length=20)

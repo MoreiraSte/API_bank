@@ -49,7 +49,7 @@ class ExtratoSerializer(serializers.ModelSerializer):
 class EnderecoSerializer(serializers.ModelSerializer):
     class Meta:
         model=Endereco
-        fields=['id','cliente','rua','cidade','bairo','uf','numero','cep']
+        fields=['id','cliente','endereco']
         
         
 

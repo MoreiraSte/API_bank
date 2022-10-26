@@ -5,7 +5,6 @@ from . import models
 admin.site.register(models.Cliente)
 admin.site.register(models.Conta)
 admin.site.register(models.Usuario)
-admin.site.register(models.Endereco)
 admin.site.register(models.Transferencia)
 admin.site.register(models.Cartoes)
 admin.site.register(models.Faturas)

@@ -9,37 +9,6 @@ class Cliente(models.Model):
     FEMININO = 'F'
     MASCULINO = 'M'
     
-    GENERO = [
-        (FEMININO, 'Feminino'),
-        (MASCULINO,'Masculino'),
-        
-    ]
-    
-    PLANO_PREMIUM = 'P'
-    PLANO_FREE = 'F'
-    
-    TIPOS_PLANO = [
-        (PLANO_FREE, 'Free'),
-        (PLANO_PREMIUM,'Premium')
-        
-    ]
-    
-    genero= models.CharField(max_length=1, choices=GENERO,default=FEMININO)
-    nome = models.CharField(max_length=255)
-    idade = models.IntegerField(max_length=3)
-    celular = models.CharField(max_length=15)
-    data_nasc = models.DateField()
-    email = models.CharField(max_length=255)
-    cpf =  models.CharField(max_length=11)
-    senha = models.IntegerField(validators=[MinValueValidator(8,"A senha precisa ter no minimo 8 caracteres")])
-    foto = ImageField()
-    tipo= models.CharField(max_length=1, choices=TIPOS_PLANO,default=PLANO_FREE)
-
-class Usuario(models.Model):
-    usuario = models.ForeignKey(Cliente,on_delete=models.PROTECT)
-    
-class Endereco(models.Model):
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     SAO_PAULO = 'SP'
     ACRE = 'AC'
     ALAGOAS = 'AL'
@@ -68,6 +37,13 @@ class Endereco(models.Model):
     TOCANTINS='TO'
     DISTRITO = 'DF'
     
+    GENERO = [
+        (FEMININO, 'Feminino'),
+        (MASCULINO,'Masculino'),
+        
+    ]
+    
+   
     ESTADOS = [
         (SAO_PAULO, 'SAO PAULO'),
         (ACRE, 'ACRE'),
@@ -98,6 +74,20 @@ class Endereco(models.Model):
         (DISTRITO, 'DISTRITO'),
     ]
     endereco =  models.CharField(max_length=2, choices=ESTADOS, default=SAO_PAULO)
+    genero= models.CharField(max_length=1, choices=GENERO,default=FEMININO)
+    nome = models.CharField(max_length=255)
+    idade = models.IntegerField(max_length=3)
+    celular = models.CharField(max_length=15)
+    data_nasc = models.DateField()
+    email = models.CharField(max_length=255)
+    cpf =  models.CharField(max_length=11)
+    senha = models.IntegerField(validators=[MinValueValidator(8,"A senha precisa ter no minimo 8 caracteres")])
+    foto = ImageField()
+   
+
+class Usuario(models.Model):
+    usuario = models.ForeignKey(Cliente,on_delete=models.PROTECT)
+    
     
 class Conta(models.Model):
     numConta = models.CharField(max_length=20)

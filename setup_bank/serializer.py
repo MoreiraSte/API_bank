@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from setup_bank.models import Usuario,Cliente,Endereco,Conta,Transferencia,Cartoes,Faturas,Emprestimos,PgtoEmprestimo,Extrato
+from setup_bank.models import Usuario,Cliente,Conta,Transferencia,Cartoes,Faturas,Emprestimos,PgtoEmprestimo,Extrato
         
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model=Cliente
-        fields= ['id','nome', 'idade','genero', 'celular','data_nasc','email','cpf','senha','foto', 'tipo']
+        fields= ['id','nome', 'idade','genero', 'celular','data_nasc','email','cpf','senha','foto']
         
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
@@ -46,10 +46,7 @@ class ExtratoSerializer(serializers.ModelSerializer):
         model=Extrato
         fields=['id','status_extrato','data_extrato','conta']
         
-class EnderecoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model=Endereco
-        fields=['id','cliente','endereco']
+
         
         
 

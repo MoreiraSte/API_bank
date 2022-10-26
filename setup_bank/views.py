@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import Cartoes, Cliente, Conta, Emprestimos, Endereco, Extrato, Faturas, PgtoEmprestimo, Transferencia, Usuario
-from .serializer import CartaoSerializer, ClienteSerializer, ContaSerializer, EmprestimoSerializer, EnderecoSerializer, ExtratoSerializer, FaturaSerializer, PgtoEmprSerializer, TransfSerializer, UsuarioSerializer
+from .models import Cartoes, Cliente, Conta, Emprestimos , Extrato, Faturas, PgtoEmprestimo, Transferencia, Usuario
+from .serializer import CartaoSerializer, ClienteSerializer, ContaSerializer, EmprestimoSerializer, ExtratoSerializer, FaturaSerializer, PgtoEmprSerializer, TransfSerializer, UsuarioSerializer
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from django.shortcuts import render,get_object_or_404
 from rest_framework.response import Response
@@ -46,7 +46,5 @@ class ExtratoViewSet(viewsets.ModelViewSet):
     queryset = Extrato.objects.all()
     serializer_class = ExtratoSerializer
     
-class EndViewSet(viewsets.ModelViewSet):
-    queryset = Endereco.objects.all()
-    serializer_class = EnderecoSerializer
+
 

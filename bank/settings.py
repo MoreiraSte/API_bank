@@ -55,13 +55,14 @@ REST_FRAMEWORK = {
       'DEFAULT_FILTER_BACKENDS':(
         'django_filters.rest_framework.DjangoFilterBackend',  
       ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    # 'DEFAULT_AUTHENTICATION_CLASSES': (
+    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
         
-    ),
-    # 'DEFAULT_PERMISSION_CLASSES':[
-    #     'rest_framework.permissions.IsAuthenticated',
-    # ]
+    # ),
+    'DEFAULT_PERMISSION_CLASSES':[
+        # 'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
+    ]
 }
 
 SIMPLE_JWT = {
@@ -70,10 +71,10 @@ SIMPLE_JWT = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -154,6 +155,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOWED_ORIGINS= [
-    '*'
-]
+CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOWED_ORIGINS= ['hhttp://localhost:3000']
+CORS_ALLOW_HEADERS = ['*']
+CORS_ORIGIN_WHITELIST = ('http://localhost:3000',)

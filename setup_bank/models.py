@@ -82,7 +82,7 @@ class Cliente(models.Model):
     email = models.CharField(max_length=255)
     cpf =  models.CharField(max_length=11)
     senha = models.IntegerField(validators=[MinValueValidator(8,"A senha precisa ter no minimo 8 caracteres")])
-    foto = ImageField()
+    # foto = ImageField()
    
 
 class Usuario(models.Model):

@@ -4,7 +4,7 @@ from setup_bank.models import Usuario,Cliente,Conta,Transferencia,Cartoes,Fatura
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model=Cliente
-        fields= ['id','nome', 'idade','genero', 'celular','data_nasc','email','cpf','senha','foto']
+        fields= ['id','nome', 'idade','genero', 'celular','data_nasc','email','cpf','senha']
         
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:

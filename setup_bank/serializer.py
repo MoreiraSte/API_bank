@@ -1,15 +1,11 @@
 from rest_framework import serializers
-from setup_bank.models import Usuario,Cliente,Conta,Transferencia,Cartoes,Faturas,Emprestimos,PgtoEmprestimo,Extrato
+from setup_bank.models import Cliente,Conta,Transferencia,Cartoes,Faturas,Emprestimos,PgtoEmprestimo,Extrato
         
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model=Cliente
-        fields= ['id','nome', 'idade','genero', 'celular','data_nasc','email','cpf','senha']
-        
-class UsuarioSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Usuario
-        fields= ['id','usuario']
+        fields= ['id','nome', 'idade','genero', 'celular','data_nasc','email','cpf','senha','endereco']
+
         
 class ContaSerializer(serializers.ModelSerializer):
     class Meta:

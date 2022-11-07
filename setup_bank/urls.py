@@ -6,7 +6,6 @@ from rest_framework_nested import routers
 rota = routers.DefaultRouter()
 
 rota.register('client',views.ClienteViewSet,basename='client')
-rota.register('user',views.UsuarioViewSet,basename='user')
 rota.register('conta',views.ContaViewSet,basename='conta')
 rota.register('transf',views.TransfViewSet,basename='transf')
 rota.register('cartao',views.CartaoViewSet,basename='cartao')

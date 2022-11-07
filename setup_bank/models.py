@@ -78,16 +78,11 @@ class Cliente(models.Model):
     nome = models.CharField(max_length=255)
     idade = models.IntegerField(max_length=3)
     celular = models.CharField(max_length=15)
-    data_nasc = models.DateField()
+    data_nasc = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     cpf =  models.CharField(max_length=11)
-    senha = models.IntegerField(validators=[MinValueValidator(8,"A senha precisa ter no minimo 8 caracteres")])
-    # foto = ImageField()
-   
-
-class Usuario(models.Model):
-    usuario = models.ForeignKey(Cliente,on_delete=models.PROTECT)
-    
+    senha = models.CharField(max_length= 8)
+    # foto = ImageField()    
     
 class Conta(models.Model):
     numConta = models.CharField(max_length=20)
@@ -106,8 +101,8 @@ class Transferencia(models.Model):
     tipo_transferencia =  models.CharField(max_length=1, choices=FORMA_PAGAMENTO, default=FORMA_PIX)
     valor_transferencia = models.DecimalField(max_digits=8, decimal_places=2)
     data_transferencia = models.DateTimeField(auto_now_add=True)
-    recebeu_transf = models.ForeignKey(Usuario,on_delete=models.CASCADE, related_name='recebeu_transf')
-    enviou_transf = models.ForeignKey(Usuario,on_delete=models.CASCADE,related_name='enviou_transf')
+    recebeu_transf = models.ForeignKey(Cliente,on_delete=models.CASCADE, related_name='recebeu_transf')
+    enviou_transf = models.ForeignKey(Cliente,on_delete=models.CASCADE,related_name='enviou_transf')
     
 class Cartoes(models.Model):
    
@@ -122,7 +117,7 @@ class Cartoes(models.Model):
     status_cartao = models.CharField(max_length=1, choices=CARTAO_OPCOES, default=CARTAO_DIGITAL)
     
     numCartao = models.CharField(max_length=16)
-    tipoClient =models.ForeignKey(Usuario,on_delete=models.CASCADE)
+    tipoClient =models.ForeignKey(Cliente,on_delete=models.CASCADE)
     vencimento_cartao = models.DateField()
    
 class Faturas(models.Model):

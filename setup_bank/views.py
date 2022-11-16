@@ -1,9 +1,11 @@
+import decimal
 from django.shortcuts import render
 from .models import Cartoes, Cliente, Conta, Emprestimos , Extrato, Faturas, PgtoEmprestimo, Transferencia
 from .serializer import CartaoSerializer, ClienteSerializer, ContaSerializer, EmprestimoSerializer, ExtratoSerializer, FaturaSerializer, PgtoEmprSerializer, TransfSerializer
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from django.shortcuts import render,get_object_or_404
 from rest_framework.response import Response
+from rest_framework import status
 from rest_framework import viewsets
 from django_filters import rest_framework as filters
 from django_filters.rest_framework import FilterSet
@@ -19,6 +21,25 @@ class ClienteViewSet(viewsets.ModelViewSet):
 class ContaViewSet(viewsets.ModelViewSet):
     queryset = Conta.objects.all()
     serializer_class = ContaSerializer
+    def create(self, request, *args, **kwargs):
+        conta = Conta.objects.filter(pk=1)
+        print('qqc')
+        
+        for c in conta:
+            # print(self.request.data['saldo'])
+            contaAtual = Conta.objects.get(pk=c.pk)
+            novoSaldo = {'saldo':self.request.data['saldo'],'numConta':self.request.data['numConta'], 'agencia':self.request.data['agencia']}
+            # novoSaldo = {'saldo':3000,'numConta':2345, 'agencia':222}
+            serializer = ContaSerializer(contaAtual,data=novoSaldo)
+            if serializer.is_valid():
+                serializer.save()
+            print('for function')
+        print('test',conta)
+        if conta is None:
+            
+            return super().create(request, *args, **kwargs)
+        else:
+           return Response(status=status.HTTP_200_OK)
     
 class TransfViewSet(viewsets.ModelViewSet):
     queryset = Transferencia.objects.all()

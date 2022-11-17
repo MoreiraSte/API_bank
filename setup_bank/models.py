@@ -116,15 +116,14 @@ class Cartoes(models.Model):
     
     status_cartao = models.CharField(max_length=1, choices=CARTAO_OPCOES, default=CARTAO_DIGITAL)
     
-    numCartao = models.CharField(max_length=16)
-    tipoClient =models.ForeignKey(Cliente,on_delete=models.CASCADE)
-    vencimento_cartao = models.DateField()
+    
+    
    
-class Faturas(models.Model):
-    valor_fatura = models.DecimalField(max_digits=8, decimal_places=2)
-    data_vencimento = models.DateField()
-    data_pagamento = models.DateField()
-    vencimento_cartao = models.ForeignKey(Cartoes, on_delete=models.CASCADE)
+# class Faturas(models.Model):
+#     valor_fatura = models.DecimalField(max_digits=8, decimal_places=2)
+#     data_vencimento = models.DateField()
+#     data_pagamento = models.DateField()
+#     vencimento_cartao = models.ForeignKey(Cartoes, on_delete=models.CASCADE)
     
 
 class Emprestimos(models.Model):

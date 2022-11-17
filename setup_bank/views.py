@@ -1,7 +1,7 @@
 import decimal
 from django.shortcuts import render
-from .models import Cartoes, Cliente, Conta, Emprestimos , Extrato, Faturas, PgtoEmprestimo, Transferencia
-from .serializer import CartaoSerializer, ClienteSerializer, ContaSerializer, EmprestimoSerializer, ExtratoSerializer, FaturaSerializer, PgtoEmprSerializer, TransfSerializer
+from .models import Cartoes, Cliente, Conta, Emprestimos , Extrato, PgtoEmprestimo, Transferencia
+from .serializer import CartaoSerializer, ClienteSerializer, ContaSerializer, EmprestimoSerializer, ExtratoSerializer, PgtoEmprSerializer, TransfSerializer
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from django.shortcuts import render,get_object_or_404
 from rest_framework.response import Response
@@ -49,9 +49,9 @@ class CartaoViewSet(viewsets.ModelViewSet):
     queryset = Cartoes.objects.all()
     serializer_class = CartaoSerializer
     
-class FaturaViewSet(viewsets.ModelViewSet):
-    queryset = Faturas.objects.all()
-    serializer_class = FaturaSerializer
+# class FaturaViewSet(viewsets.ModelViewSet):
+#     queryset = Faturas.objects.all()
+#     serializer_class = FaturaSerializer
     
 class EmprestimoViewSet(viewsets.ModelViewSet):
     queryset = Emprestimos.objects.all()

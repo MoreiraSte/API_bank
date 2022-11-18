@@ -116,16 +116,6 @@ class Cartoes(models.Model):
     
     status_cartao = models.CharField(max_length=1, choices=CARTAO_OPCOES, default=CARTAO_DIGITAL)
     
-    
-    
-   
-# class Faturas(models.Model):
-#     valor_fatura = models.DecimalField(max_digits=8, decimal_places=2)
-#     data_vencimento = models.DateField()
-#     data_pagamento = models.DateField()
-#     vencimento_cartao = models.ForeignKey(Cartoes, on_delete=models.CASCADE)
-    
-
 class Emprestimos(models.Model):
     
     EMPRESTIMO_RECUSADO = 'R'
@@ -141,20 +131,7 @@ class Emprestimos(models.Model):
     status_emprestimo = models.CharField(max_length=1, choices=SITUACAO, default=EMPRESTIMO_AGUARDANDO)
 
     valor_solicitado = models.DecimalField(max_digits=8, decimal_places=2)
-    data_solicitado = models.DateTimeField(auto_now_add=True)
-    taxa_juros = models.IntegerField(max_length=2)
-    qtd_parcelas = models.IntegerField(max_length=2)
-    valor_com_juros = models.DecimalField(max_digits=8, decimal_places=2)
-    data_primeira_parcela = models.DateTimeField(auto_now_add=True)
-    qtd_parcelas_pagas = models.IntegerField(max_length=2)
-    valor_total_pago = models.DecimalField(max_digits=8, decimal_places=2)
-
-
-class PgtoEmprestimo(models.Model):
-    dataPgto =  models.DateField(auto_now_add=True)
-    valor = models.DecimalField(max_digits=8, decimal_places=2)
-    emprestimo = models.ForeignKey(Emprestimos, on_delete=models.CASCADE)
-
+    
 class Extrato(models.Model):
     
     TRANSFERENCIA = 'T'

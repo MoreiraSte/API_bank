@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from setup_bank.models import Cliente,Conta,Transferencia,Cartoes,Emprestimos,PgtoEmprestimo,Extrato
+from setup_bank.models import Cliente,Conta,Transferencia,Cartoes,Emprestimos,Extrato
         
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
@@ -22,20 +22,13 @@ class CartaoSerializer(serializers.ModelSerializer):
         model=Cartoes
         fields= ['id', 'status_cartao']
         
-# class FaturaSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model=Faturas
-#         fields=['id','valor_fatura','data_vencimento','data_pagamento','vencimento_cartao']
+
         
 class EmprestimoSerializer(serializers.ModelSerializer):
     class Meta:
         model=Emprestimos
-        fields=['id','status_emprestimo','valor_solicitado','data_solicitado','taxa_juros','qtd_parcelas','valor_com_juros','data_primeira_parcela','qtd_parcelas_pagas','valor_total_pago']
+        fields=['id','status_emprestimo','valor_solicitado']
         
-class PgtoEmprSerializer(serializers.ModelSerializer):
-    class Meta:
-        model=PgtoEmprestimo
-        fields=['id', 'dataPgto','valor','emprestimo']
         
 class ExtratoSerializer(serializers.ModelSerializer):
     class Meta:

@@ -45,9 +45,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "corsheaders",
     'rest_framework',
+    'djoser',
     'django_filters',
     'setup_bank',
-    'djoser',
 ]
 
 REST_FRAMEWORK = {
@@ -55,13 +55,8 @@ REST_FRAMEWORK = {
       'DEFAULT_FILTER_BACKENDS':(
         'django_filters.rest_framework.DjangoFilterBackend',  
       ),
-    # 'DEFAULT_AUTHENTICATION_CLASSES': (
-    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
-        
-    # ),
     'DEFAULT_PERMISSION_CLASSES':[
-        # 'rest_framework.permissions.IsAuthenticated',
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
     ]
 }
 

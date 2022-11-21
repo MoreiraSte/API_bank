@@ -48,9 +48,26 @@ class TransfViewSet(viewsets.ModelViewSet):
 class CartaoViewSet(viewsets.ModelViewSet):
     queryset = Cartoes.objects.all()
     serializer_class = CartaoSerializer  
+    
 class EmprestimoViewSet(viewsets.ModelViewSet):
+    
     queryset = Emprestimos.objects.all()
     serializer_class = EmprestimoSerializer
+    
+    def somaSaldo(self):
+        
+        valor = Emprestimos.objects.get()
+        valorSaldo =  Conta.objects.get('saldo')
+        saldoNovo = valor + valorSaldo
+        serializer = ContaSerializer(valorSaldo,data=saldoNovo)
+        
+        if serializer.is_valid():
+            serializer.save()
+        
+        else:
+           return Response(status=status.HTTP_200_OK)
+
+        
   
 class ExtratoViewSet(viewsets.ModelViewSet):
     queryset = Extrato.objects.all()

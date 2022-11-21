@@ -118,18 +118,6 @@ class Cartoes(models.Model):
     
 class Emprestimos(models.Model):
     
-    EMPRESTIMO_RECUSADO = 'R'
-    EMPRESTIMO_AGUARDANDO = 'A'
-    EMPRESTIMO_CONCLUIDO = 'C'
-     
-    SITUACAO= [
-        (EMPRESTIMO_RECUSADO,'Recusado'),
-        (EMPRESTIMO_AGUARDANDO, 'Aguardando'),
-        (EMPRESTIMO_CONCLUIDO,'Concluido')
-    ]
-    
-    status_emprestimo = models.CharField(max_length=1, choices=SITUACAO, default=EMPRESTIMO_AGUARDANDO)
-
     valor_solicitado = models.DecimalField(max_digits=8, decimal_places=2)
     
 class Extrato(models.Model):

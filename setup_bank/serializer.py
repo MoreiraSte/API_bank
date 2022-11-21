@@ -27,7 +27,7 @@ class CartaoSerializer(serializers.ModelSerializer):
 class EmprestimoSerializer(serializers.ModelSerializer):
     class Meta:
         model=Emprestimos
-        fields=['id','status_emprestimo','valor_solicitado']
+        fields=['id','valor_solicitado']
         
         
 class ExtratoSerializer(serializers.ModelSerializer):

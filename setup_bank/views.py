@@ -56,7 +56,7 @@ class EmprestimoViewSet(viewsets.ModelViewSet):
     
     def somaSaldo(self):
         
-        valor = Emprestimos.objects.get()
+        valor = Emprestimos.objects.get('valor_solicitado')
         valorSaldo =  Conta.objects.get('saldo')
         saldoNovo = valor + valorSaldo
         serializer = ContaSerializer(valorSaldo,data=saldoNovo)

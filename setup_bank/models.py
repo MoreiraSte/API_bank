@@ -81,7 +81,7 @@ class Cliente(models.Model):
     data_nasc = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     cpf =  models.CharField(max_length=11)
-    senha = models.CharField(max_length= 8)
+    senha = models.CharField(max_length=20)
     # foto = ImageField()    
     
 class Conta(models.Model):

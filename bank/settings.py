@@ -54,10 +54,7 @@ REST_FRAMEWORK = {
     'COERCE_DECIMAL_TO_STRING':False,
       'DEFAULT_FILTER_BACKENDS':(
         'django_filters.rest_framework.DjangoFilterBackend',  
-      ),
-    'DEFAULT_PERMISSION_CLASSES':[
-        'rest_framework.permissions.IsAuthenticated',
-    ]
+      )
 }
 
 SIMPLE_JWT = {

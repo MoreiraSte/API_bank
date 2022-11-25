@@ -54,18 +54,26 @@ class EmprestimoViewSet(viewsets.ModelViewSet):
     queryset = Emprestimos.objects.all()
     serializer_class = EmprestimoSerializer
     
-    def somaSaldo(self):
+    # def create(self, request, *args, **kwargs):
+    #     valor_emprestimo = self.request.data['valor_solicitado']        
+    #     conta_atual = Conta.objects.get(pk=1)
+    #     novo_valor = {'saldo': conta_atual.saldo + decimal.Decimal(valor_emprestimo)}
+    #     serializer_conta = ContaSerializer(conta_atual , data=novo_valor)
+    #     if serializer_conta.is_valid():
+    #         serializer_conta.save()
+    
+    # def somaSaldo(self):
         
-        valor = Emprestimos.objects.get('valor_solicitado')
-        valorSaldo =  Conta.objects.get('saldo')
-        saldoNovo = valor + valorSaldo
-        serializer = ContaSerializer(valorSaldo,data=saldoNovo)
+    #     valor = Emprestimos.objects.get('valor_solicitado')
+    #     valorSaldo =  Conta.objects.get('saldo')
+    #     saldoNovo = valor + valorSaldo
+    #     serializer = ContaSerializer(valorSaldo,data=saldoNovo)
         
-        if serializer.is_valid():
-            serializer.save()
+    #     if serializer.is_valid():
+    #         serializer.save()
         
-        else:
-           return Response(status=status.HTTP_200_OK)
+    #     else:
+    #        return Response(status=status.HTTP_200_OK)
 
         
   

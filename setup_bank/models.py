@@ -120,23 +120,6 @@ class Emprestimos(models.Model):
     
     valor_solicitado = models.DecimalField(max_digits=8, decimal_places=2)
     
-class Extrato(models.Model):
-    
-    TRANSFERENCIA = 'T'
-    SAQUE = 'S'
-    DEPOSITO = 'D'
-    
-    MODOS = [
-        (TRANSFERENCIA,'transferencia'),
-        (SAQUE,'saque'),
-        (DEPOSITO,'deposito')
-    ]
-    
-    status_extrato = models.CharField(max_length=1,choices=MODOS, default=SAQUE)
-    
-    data_extrato = models.DateField(auto_now_add=True)
-    conta = models.ForeignKey(Conta,on_delete=models.PROTECT)
-    transf = models.ForeignKey(Transferencia,on_delete=models.CASCADE)
-    
+
 
 

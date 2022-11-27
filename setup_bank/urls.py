@@ -10,7 +10,6 @@ rota.register('conta',views.ContaViewSet,basename='conta')
 rota.register('transf',views.TransfViewSet,basename='transf')
 rota.register('cartao',views.CartaoViewSet,basename='cartao')
 rota.register('empr',views.EmprestimoViewSet,basename='empr')
-rota.register('extrato',views.ExtratoViewSet,basename='extrato')
 
 
 

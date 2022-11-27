@@ -7,7 +7,7 @@ admin.site.register(models.Conta)
 admin.site.register(models.Transferencia)
 admin.site.register(models.Cartoes)
 admin.site.register(models.Emprestimos)
-admin.site.register(models.Extrato)
+
 
 
 

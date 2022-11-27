@@ -1,7 +1,7 @@
 import decimal
 from django.shortcuts import render
-from .models import Cartoes, Cliente, Conta, Emprestimos , Extrato, Transferencia
-from .serializer import CartaoSerializer, ClienteSerializer, ContaSerializer, EmprestimoSerializer, ExtratoSerializer, TransfSerializer
+from .models import Cartoes, Cliente, Conta, Emprestimos , Transferencia
+from .serializer import CartaoSerializer, ClienteSerializer, ContaSerializer, EmprestimoSerializer, TransfSerializer
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from django.shortcuts import render,get_object_or_404
 from rest_framework.response import Response
@@ -54,13 +54,21 @@ class EmprestimoViewSet(viewsets.ModelViewSet):
     queryset = Emprestimos.objects.all()
     serializer_class = EmprestimoSerializer
     
-    # def create(self, request, *args, **kwargs):
-    #     valor_emprestimo = self.request.data['valor_solicitado']        
-    #     conta_atual = Conta.objects.get(pk=1)
-    #     novo_valor = {'saldo': conta_atual.saldo + decimal.Decimal(valor_emprestimo)}
-    #     serializer_conta = ContaSerializer(conta_atual , data=novo_valor)
-    #     if serializer_conta.is_valid():
-    #         serializer_conta.save()
+    def create(self, request, *args, **kwargs):
+
+        valor_emprestimo = self.request.data['valor_solicitado']        
+        conta_atual = Conta.objects.filter(pk=1)
+
+        for e in conta_atual:
+            contaAtual = Conta.objects.get(pk=e.pk)
+            novo_valor = {'saldo': contaAtual.saldo + decimal.Decimal(valor_emprestimo)}
+            serializer_conta = ContaSerializer(contaAtual , data=novo_valor)
+            if serializer_conta.is_valid():
+
+                serializer_conta.save()
+
+            else:
+                 return Response(status=status.HTTP_200_OK)
     
     # def somaSaldo(self):
         
@@ -76,10 +84,7 @@ class EmprestimoViewSet(viewsets.ModelViewSet):
     #        return Response(status=status.HTTP_200_OK)
 
         
-  
-class ExtratoViewSet(viewsets.ModelViewSet):
-    queryset = Extrato.objects.all()
-    serializer_class = ExtratoSerializer
+
     
 
 

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from setup_bank.models import Cliente,Conta,Transferencia,Cartoes,Emprestimos,Extrato
+from setup_bank.models import Cliente,Conta,Transferencia,Cartoes,Emprestimos
         
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
@@ -30,10 +30,7 @@ class EmprestimoSerializer(serializers.ModelSerializer):
         fields=['id','valor_solicitado']
         
         
-class ExtratoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model=Extrato
-        fields=['id','status_extrato','data_extrato','conta']
+
         
 
         

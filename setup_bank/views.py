@@ -18,6 +18,18 @@ class ClienteViewSet(viewsets.ModelViewSet):
     queryset = Cliente.objects.all()
     serializer_class = ClienteSerializer
     
+    def create(self, request, *args, **kwargs):
+        if self.request.data["operacao"] == 'logar':
+            cliente = Cliente.objects.filter(email = self.request.data['email'],senha = self.request.data['senha'])
+            if cliente is not None:
+                return Response({'dados' : cliente})
+            else:
+                return Response(status=status.HTTP_401_OK)
+        
+        else:
+            
+           return super().create(request, *args, **kwargs)
+    
 class ContaViewSet(viewsets.ModelViewSet):
     queryset = Conta.objects.all()
     serializer_class = ContaSerializer
@@ -45,6 +57,25 @@ class TransfViewSet(viewsets.ModelViewSet):
     queryset = Transferencia.objects.all()
     serializer_class = TransfSerializer
     
+    def create(self, request, *args, **kwargs):
+
+        valor_transf = self.request.data['valor_transferencia']        
+        conta_atual = Conta.objects.filter(pk=1)
+
+        for e in conta_atual:
+            contaAtual = Conta.objects.get(pk=e.pk)
+            novo_valor = {'saldo': contaAtual.saldo - decimal.Decimal(valor_transf),'numConta': contaAtual.numConta, 'agencia':contaAtual.agencia}
+            serializer_conta = ContaSerializer(contaAtual , data=novo_valor)
+            if serializer_conta.is_valid():
+
+                serializer_conta.save()
+                
+                  
+                return super().create(request, *args, **kwargs)
+
+            else:
+                 return Response( {'message':serializer_conta.errors},status=status.HTTP_200_OK)
+    
 class CartaoViewSet(viewsets.ModelViewSet):
     queryset = Cartoes.objects.all()
     serializer_class = CartaoSerializer  
@@ -61,27 +92,19 @@ class EmprestimoViewSet(viewsets.ModelViewSet):
 
         for e in conta_atual:
             contaAtual = Conta.objects.get(pk=e.pk)
-            novo_valor = {'saldo': contaAtual.saldo + decimal.Decimal(valor_emprestimo)}
+            novo_valor = {'saldo': contaAtual.saldo + decimal.Decimal(valor_emprestimo),'numConta': contaAtual.numConta, 'agencia':contaAtual.agencia}
             serializer_conta = ContaSerializer(contaAtual , data=novo_valor)
             if serializer_conta.is_valid():
 
                 serializer_conta.save()
+                
+                  
+                return super().create(request, *args, **kwargs)
 
             else:
-                 return Response(status=status.HTTP_200_OK)
+                 return Response( {'message':serializer_conta.errors},status=status.HTTP_200_OK)
     
-    # def somaSaldo(self):
-        
-    #     valor = Emprestimos.objects.get('valor_solicitado')
-    #     valorSaldo =  Conta.objects.get('saldo')
-    #     saldoNovo = valor + valorSaldo
-    #     serializer = ContaSerializer(valorSaldo,data=saldoNovo)
-        
-    #     if serializer.is_valid():
-    #         serializer.save()
-        
-    #     else:
-    #        return Response(status=status.HTTP_200_OK)
+   
 
         
 

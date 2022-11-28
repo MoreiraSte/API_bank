@@ -100,9 +100,9 @@ class Transferencia(models.Model):
     
     tipo_transferencia =  models.CharField(max_length=1, choices=FORMA_PAGAMENTO, default=FORMA_PIX)
     valor_transferencia = models.DecimalField(max_digits=8, decimal_places=2)
-    data_transferencia = models.DateTimeField(auto_now_add=True)
-    recebeu_transf = models.ForeignKey(Cliente,on_delete=models.CASCADE, related_name='recebeu_transf')
-    enviou_transf = models.ForeignKey(Cliente,on_delete=models.CASCADE,related_name='enviou_transf')
+    data_transferencia = models.CharField(max_length=255)
+    recebeu_transf = models.CharField(max_length=255)
+    enviou_transf = models.CharField(max_length=255)
     
 class Cartoes(models.Model):
    

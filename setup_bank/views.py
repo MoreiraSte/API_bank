@@ -20,9 +20,11 @@ class ClienteViewSet(viewsets.ModelViewSet):
     
     def create(self, request, *args, **kwargs):
         if self.request.data["operacao"] == 'logar':
-            cliente = Cliente.objects.filter(email = self.request.data['email'],senha = self.request.data['senha'])
+            cliente = Cliente.objects.filter(email = self.request.data['email'],senha = self.request.data['senha'])[0]
             if cliente is not None:
-                return Response({'dados' : cliente})
+                serializer = ClienteSerializer(cliente)
+                
+                return Response({'dados' : serializer.data})
             else:
                 return Response(status=status.HTTP_401_OK)
         
